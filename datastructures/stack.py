@@ -1,8 +1,11 @@
-class ArrayStack:
-    """
+"""
     A stack is a collection of objects that are inserted and removed
     according to the "last-in first-out" (LIFO) principle.
+"""
 
+
+class ArrayStack:
+    """
     The array stack uses an array (or in Python's case a list) to hold its data.
     As it's Python we don't need to worry about dynamically resizing the list as it grows.
     """
@@ -44,44 +47,66 @@ class ArrayStack:
 
 class LinkedStack:
     """
-    A stack is a collection of objects that are inserted and removed
-    according to the "last-in first-out" (LIFO) principle.
-
-    Uses a linked list to store its data.
+    This linked stack uses a linked list to store its data.
     """
-
     class Node:
-        def __init__(self, e):
-            self.e = e
+        def __init__(self, element, prev, next):
+            self.element = element
+            self.prev = prev
+            self.next = next
 
         def __repr__(self):
-            return '<{}>'.format(self.e)
+            return 'Node<{}>'.format(self.element)
+
+        def element(self):
+            return self.element
+
+        def get_prev(self):
+            return self.prev
+
+        def get_next(self):
+            return self.next
+
+        def set_prev(self, prev):
+            self.prev = prev
+
+        def set_next(self, next):
+            self.next = next
 
     def __init__(self):
+        self.head = self.Node(None, None, None)
+        self.tail = self.Node(None, self.head, None)
         self.size = 0
-        self.data = []
 
     def __repr__(self):
-        result = ', '.join(str(x) for x in self.data)
-        return '<{}>'.format(result)
+        result = ''
+        if not self.is_empty():
+            node = self.head
+            result += str(node.element)
+            node = node.get_next()
+            while node:
+                result += ', {}'.format(node.element)
+                node = node.get_next()
+
+        return 'Stack<{}>'.format(result)
 
     def push(self, e):
         """Adds an element to the top of the stack."""
-        self.data.append(e)
+        self.head = self.Node(e, self.head)
         self.size += 1
 
     def pop(self):
         """Removes and returns the top element from the stack."""
-        if self.is_empty():
-            return None
-        self.size -= 1
-        return self.data.pop()
+        # if self.is_empty():
+        #     return None
+        # self.size -= 1
+        # return self.data.pop()
 
     def top(self):
         """Returns the top element of the stack without removing it."""
-        if self.is_empty():
-            return None
-        return self.data[self.size]
+        # if self.is_empty():
+        #     return None
+        # return self.data[self.size]
 
     def size(self):
         """Returns the number of elements in the stack."""
