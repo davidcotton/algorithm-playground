@@ -1,0 +1,22 @@
+
+class QuickSort:
+    """
+        Quick Sort
+        ----------
+
+        Time Complexity:
+          - Best: O(n log n)
+          - Avg: O(n log n)
+          - Worst: O(n log n)
+
+        Space Complexity:
+          - O(n)
+    """
+
+    @staticmethod
+    def sort(l):
+        return l
+
+
+# data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
+# print(QuickSort.sort(data))
