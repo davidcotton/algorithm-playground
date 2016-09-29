@@ -19,10 +19,8 @@ def read_file(f):
     result = []
     if not os.path.isfile(f):
         return result
-
     with open(f, 'r') as file:
-        for line in file:
-            result.append(int(line))
+        result = [int(line) for line in file]
     return result
 
 
@@ -30,8 +28,8 @@ def run_sort(sorter, data):
     """Run a sorting algorithm and time the sorting."""
     times = []
     for i in range(NUM_SORTS):
-        t0 = time()
         d2 = deepcopy(data)
+        t0 = time()
         sorter.sort(d2)
         times.append(time() - t0)
         # print(data[0:20])
@@ -41,7 +39,7 @@ def run_sort(sorter, data):
     # median
     print('Median time: {}s'.format(round(median(times), DIGITS)))
 
-    # remove highest & lowest times
+    # remove highest & lowest times (to account for warm-up time)
     if len(times) > 4:
         times.remove(max(times))
         times.remove(min(times))
@@ -50,7 +48,7 @@ def run_sort(sorter, data):
 
 
 if __name__ == '__main__':
-    d = read_file('../data/10000000.txt')
+    d = read_file('../data/1000000.txt')
     # run_sort(BubbleSort(), d)
     # run_sort(InsertionSort(), d)
     # run_sort(HeapSort(), d)
