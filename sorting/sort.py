@@ -11,7 +11,7 @@ from statistics import median
 from time import time
 
 NUM_SORTS = 1
-DIGITS = 3
+PRECISION = 5
 
 
 def read_file(f):
@@ -37,20 +37,21 @@ def run_sort(sorter, data):
 
     print(sorter.__class__.__name__)
     # median
-    print('Median time: {}s'.format(round(median(times), DIGITS)))
+    print('Median time: {}s'.format(round(median(times), PRECISION)))
 
     # remove highest & lowest times (to account for warm-up time)
     if len(times) > 4:
         times.remove(max(times))
         times.remove(min(times))
     avg = sum(times) / len(times)
-    print('Avg time: {}s\n'.format(round(avg, DIGITS)))
+    print('Avg time: {}s\n'.format(round(avg, PRECISION)))
 
 
 if __name__ == '__main__':
-    d = read_file('../data/1000000.txt')
+    d = read_file('../data/100.txt')
     # run_sort(BubbleSort(), d)
     # run_sort(InsertionSort(), d)
     # run_sort(HeapSort(), d)
-    run_sort(MergeSort(), d)
-    run_sort(MergeSortStrict(), d)
+    # run_sort(MergeSort(), d)
+    # run_sort(MergeSortStrict(), d)
+    run_sort(QuickSort(), d)

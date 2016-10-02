@@ -1,3 +1,9 @@
+"""
+Merge sort is an efficient, general purpose, comparision sorting algorithm.
+Merge sort is a divide & conquer algorithm.
+Merge sort produces a stable sort.
+"""
+
 
 class MergeSort:
     """
@@ -65,7 +71,8 @@ class MergeSortStrict:
 
         return self.merge(l1, l2, l)
 
-    def merge(self, l1, l2, l):
+    @staticmethod
+    def merge(l1, l2, l):
         """Merge two sorted sequences."""
         i = j = 0
         while i + j < len(l):
@@ -77,4 +84,8 @@ class MergeSortStrict:
                 j += 1
         return l
 
-# data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
+
+if __name__ == '__main__':
+    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
+    sorter = MergeSortStrict()
+    print(sorter.sort(data))
