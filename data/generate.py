@@ -4,7 +4,7 @@ Generate text files with random numbers to sort.
 
 from random import randint
 
-MAX_INT = 100000000
+MAX_INT = 1000000
 
 
 def gen_random(n):
@@ -15,4 +15,4 @@ def gen_random(n):
         file.write(line)
     file.close()
 
-gen_random(10000000)
+gen_random(1000000)

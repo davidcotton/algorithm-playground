@@ -10,6 +10,8 @@ class QuickSort:
         Quick Sort
         ----------
 
+        w = word length
+
         Time Complexity:
           - Best: O(n log n)
           - Avg: O(n log n)
@@ -25,8 +27,8 @@ class QuickSort:
         if low < high:
             pivot = self.partition(data, low, high)
             data = self.sort(data, low, pivot - 1)
-            data = self.sort(data, pivot, high)
-        return data
+            self.sort(data, pivot, high)
+        # return data
 
     @staticmethod
     def partition(data, low, high):
