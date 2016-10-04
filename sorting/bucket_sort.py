@@ -33,12 +33,12 @@ class BucketSort:
                 min_n = x
 
         # Initialise buckets
-        num_buckets = self.get_bucket_size(max_n, min_n) + 1
+        num_buckets = self.get_bucket_size(min_n, max_n) + 1
         buckets = [[] for _ in range(num_buckets)]
 
         # Distribute input into buckets
         for i, x in enumerate(data):
-            buckets[self.get_bucket_size(x, min_n)].append(x)
+            buckets[self.get_bucket_size(min_n, x)].append(x)
 
         # Sort buckets
         sorter = InsertionSort()
@@ -48,8 +48,8 @@ class BucketSort:
         return result
 
     @staticmethod
-    def get_bucket_size(maxx, minn):
-        return floor((maxx - minn) / BucketSort.BUCKET_SIZE)
+    def get_bucket_size(min_n, max_n):
+        return floor((max_n - min_n) / BucketSort.BUCKET_SIZE)
 
 
 if __name__ == '__main__':
