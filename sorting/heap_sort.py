@@ -1,3 +1,6 @@
+"""Heap sort.
+"""
+
 
 class HeapSort:
     """
@@ -18,5 +21,6 @@ class HeapSort:
         return l
 
 
-# data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-# print(HeapSort.sort(data))
+if __name__ == '__main__':
+    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
+    print(HeapSort().sort(data))

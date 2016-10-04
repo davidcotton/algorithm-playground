@@ -17,11 +17,12 @@ class RadixSort:
           - O(w + N)
     """
 
-    def sort(self, data):
+    @staticmethod
+    def sort(data):
         num_digits = max(data)
         exp = 1
         while num_digits / exp > 0:
-            self.bucket_sort(data, exp)
+            RadixSort.bucket_sort(data, exp)
             exp *= 10
 
     @staticmethod
@@ -49,6 +50,5 @@ class RadixSort:
 
 if __name__ == '__main__':
     l = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-    sorter = RadixSort()
-    sorter.sort(l)
+    RadixSort().sort(l)
     print(l)

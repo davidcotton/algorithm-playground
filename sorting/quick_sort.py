@@ -1,7 +1,5 @@
-"""
-Quick sort is an efficient, randomised, comparision sorting algorithm.
+"""Quick sort is an efficient, randomised, comparision sorting algorithm.
 Quick sort is a divide & conquer algorithm.
-
 """
 
 
@@ -21,14 +19,15 @@ class QuickSort:
           - O(n)
     """
 
-    def sort(self, data, low=0, high=None):
+    @staticmethod
+    def sort(data, low=0, high=None):
         if high is None:
             high = len(data) - 1
         if low < high:
-            pivot = self.partition(data, low, high)
-            data = self.sort(data, low, pivot - 1)
-            self.sort(data, pivot, high)
-        # return data
+            pivot = QuickSort.partition(data, low, high)
+            data = QuickSort.sort(data, low, pivot - 1)
+            QuickSort.sort(data, pivot, high)
+        return data
 
     @staticmethod
     def partition(data, low, high):
@@ -44,6 +43,4 @@ class QuickSort:
 
 if __name__ == '__main__':
     l = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-    sorter = QuickSort()
-    result = sorter.sort(l)
-    print(l)
+    print(QuickSort().sort(l))

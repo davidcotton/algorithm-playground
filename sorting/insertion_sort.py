@@ -1,3 +1,6 @@
+"""Insertion sort.
+"""
+
 
 class InsertionSort:
     """
@@ -13,7 +16,8 @@ class InsertionSort:
           - O(n)
     """
 
-    def sort(self, l):
+    @staticmethod
+    def sort(l):
         for i in range(1, len(l)):
             temp = l[i]
             j = i - 1
@@ -22,3 +26,8 @@ class InsertionSort:
                 j -= 1
             l[j + 1] = temp
         return l
+
+
+if __name__ == '__main__':
+    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
+    print(InsertionSort().sort(data))

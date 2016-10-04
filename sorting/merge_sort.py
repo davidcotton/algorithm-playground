@@ -1,5 +1,4 @@
-"""
-Merge sort is an efficient, general purpose, comparision sorting algorithm.
+"""Merge sort is an efficient, general purpose, comparision sorting algorithm.
 Merge sort is a divide & conquer algorithm.
 Merge sort produces a stable sort.
 """
@@ -87,5 +86,4 @@ class MergeSortStrict:
 
 if __name__ == '__main__':
     data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-    sorter = MergeSortStrict()
-    print(sorter.sort(data))
+    print(MergeSortStrict().sort(data))

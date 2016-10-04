@@ -54,6 +54,5 @@ class BucketSort:
 
 if __name__ == '__main__':
     l = [20, 6, 12, 16, 4, 10, 2, 6, 16, 13]
-    sorter = BucketSort()
-    l = sorter.sort(l)
+    l = BucketSort().sort(l)
     print(l)

@@ -1,21 +1,32 @@
-# Selection Sort
-#
-# Best : O(n^2)
-# Avg  : O(n^2)
-# Worst: O(n^2)
-# Space: O(1)
+"""Selection sort.
+"""
 
 
-def selection_sort(data):
-    """Selection sort. """
-    for j in range(len(data)):
-        i_min = j
-        for i in range(j + 1, len(data)):
-            if data[i] < data[i_min]:
-                i_min = i
-        data[i_min], data[j] = data[j], data[i_min]
-    return data
+class SelectionSort:
+    """
+        Selection Sort
+        --------------
+
+        Time Complexity:
+          - Best: O(n^2)
+          - Avg: O(n^2)
+          - Worst: O(n^2)
+
+        Space Complexity:
+          - O(1)
+    """
+
+    @staticmethod
+    def sort(l):
+        for j in range(len(l)):
+            i_min = j
+            for i in range(j + 1, len(l)):
+                if l[i] < l[i_min]:
+                    i_min = i
+            l[i_min], l[j] = l[j], l[i_min]
+        return l
 
 
-l = [64, 25, 12, 22, 11]
-print(selection_sort(l))
+if __name__ == '__main__':
+    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
+    print(SelectionSort().sort(data))

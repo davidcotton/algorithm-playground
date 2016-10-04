@@ -1,3 +1,6 @@
+"""Bubble sort.
+"""
+
 
 class BubbleSort:
     """
@@ -13,7 +16,8 @@ class BubbleSort:
           - O(n)
     """
 
-    def sort(self, l):
+    @staticmethod
+    def sort(l):
         swapped = True
         while swapped:
             swapped = False
@@ -22,3 +26,8 @@ class BubbleSort:
                     l[i], l[i + 1] = l[i + 1], l[i]
                     swapped = True
         return l
+
+
+if __name__ == '__main__':
+    data = [20, 6, 12, 16, 4, 10, 2, 6, 16, 13]
+    print(BubbleSort().sort(data))
