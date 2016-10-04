@@ -1,5 +1,5 @@
 """
-Bucket sort is a comparative sorting algorithm that sorts elements into a number of buckets.
+    Bucket sort is a comparative sorting algorithm that sorts elements into a number of buckets.
 """
 
 from math import floor
@@ -24,7 +24,8 @@ class BucketSort:
 
     BUCKET_SIZE = 10
 
-    def sort(self, data):
+    @staticmethod
+    def sort(data):
         max_n = min_n = 0
         for i, x in enumerate(data):
             if x > max_n:
@@ -33,12 +34,12 @@ class BucketSort:
                 min_n = x
 
         # Initialise buckets
-        num_buckets = self.get_bucket_size(min_n, max_n) + 1
+        num_buckets = BucketSort.get_bucket_size(min_n, max_n) + 1
         buckets = [[] for _ in range(num_buckets)]
 
         # Distribute input into buckets
         for i, x in enumerate(data):
-            buckets[self.get_bucket_size(min_n, x)].append(x)
+            buckets[BucketSort.get_bucket_size(min_n, x)].append(x)
 
         # Sort buckets
         sorter = InsertionSort()
@@ -54,5 +55,4 @@ class BucketSort:
 
 if __name__ == '__main__':
     l = [20, 6, 12, 16, 4, 10, 2, 6, 16, 13]
-    l = BucketSort().sort(l)
-    print(l)
+    print(BucketSort().sort(l))

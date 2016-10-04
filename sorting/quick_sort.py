@@ -1,5 +1,12 @@
-"""Quick sort is an efficient, randomised, comparision sorting algorithm.
-Quick sort is a divide & conquer algorithm.
+"""
+    Quick sort is an efficient, randomised, comparision sorting algorithm.
+    Quick sort is a divide & conquer algorithm.
+    Unlike merge sort the majority of the work in quick sort happens during the divide step.
+
+    Quick sort works in place.
+    In the worst case quick sort degrades to quadratic.
+    In practice quick sort often outperforms merge sort as its constant operations
+    are faster than merge sorts.
 """
 
 
@@ -26,7 +33,7 @@ class QuickSort:
         if low < high:
             pivot = QuickSort.partition(data, low, high)
             data = QuickSort.sort(data, low, pivot - 1)
-            QuickSort.sort(data, pivot, high)
+            data = QuickSort.sort(data, pivot, high)
         return data
 
     @staticmethod

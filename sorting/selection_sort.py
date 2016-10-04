@@ -1,4 +1,8 @@
-"""Selection sort.
+"""
+    Selection sort is an in place comparison sort.
+    Selection sort divides the list into into two lists: one sorted and one to sort.
+    The algorithm proceeds by finding the smallest element in the unsorted list
+    and swapping it into the sorted list.
 """
 
 

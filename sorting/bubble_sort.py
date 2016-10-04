@@ -1,4 +1,6 @@
-"""Bubble sort.
+"""
+    Bubble sort is a simple sorting algorithm.
+    Bubble sort compares each adjacent pair of items and swaps them if they are in the wrong order.
 """
 
 

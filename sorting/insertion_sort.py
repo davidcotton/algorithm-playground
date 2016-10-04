@@ -1,4 +1,6 @@
-"""Insertion sort.
+"""
+    Insertion sort is a simple sorting algorithm.
+    Insertion sort builds the final sorted array on item at a time.
 """
 
 
@@ -13,7 +15,7 @@ class InsertionSort:
           - Worst: O(n^2)
 
         Space Complexity:
-          - O(n)
+          - O(1)
     """
 
     @staticmethod

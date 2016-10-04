@@ -4,7 +4,7 @@ from bubble_sort import BubbleSort
 from bucket_sort import BucketSort
 from heap_sort import HeapSort
 from insertion_sort import InsertionSort
-from merge_sort import MergeSort, MergeSortStrict
+from merge_sort import MergeSort
 from quick_sort import QuickSort
 from radix_sort import RadixSort
 from copy import deepcopy
@@ -51,11 +51,11 @@ def run_sort(sorter, data):
 
 if __name__ == '__main__':
     d = read_file('../data/100.txt')
-    run_sort(BubbleSort(), d)
-    run_sort(InsertionSort(), d)
+    # run_sort(BubbleSort(), d)
+    # run_sort(InsertionSort(), d)
     # run_sort(HeapSort(), d)
     # run_sort(MergeSort(), d)
     # run_sort(MergeSortStrict(), d)
-    # run_sort(QuickSort(), d)
+    run_sort(QuickSort(), d)
     # run_sort(RadixSort(), d)
     # run_sort(BucketSort(), d)
