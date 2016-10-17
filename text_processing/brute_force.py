@@ -23,5 +23,5 @@ if __name__ == '__main__':
     pattern_success = 'pattern'
     pattern_failure = 'failure'
     text = 'looking in this text for pattern'
-    print('Success {}'.format(BruteForce.search(pattern_success, text)))
-    print('Failure {}'.format(BruteForce.search(pattern_failure, text)))
+    print('Success: {}'.format(BruteForce.search(pattern_success, text)))
+    print('Failure: {}'.format(BruteForce.search(pattern_failure, text)))

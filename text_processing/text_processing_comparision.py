@@ -2,24 +2,23 @@
 
 import codecs
 import os.path
-from nltk.corpus import abc
 from statistics import median
 from time import time
 from brute_force import BruteForce
 from boyer_moore import BoyerMoore
 from kmp import KMP
-from trie import Trie
+from trie import DefaultTrie
 
 NUM_SORTS = 1
-PRECISION = 3
-DATA_DIR = '../corpus'
+PRECISION = 5
+DATA_DIR = '../corpora'
 
 
 def read_file(f):
     """Read in a file to sort."""
-    result = ''
     if not os.path.isfile(f):
-        return result
+        raise RuntimeError('File does not exist')
+    result = ''
     f = codecs.open(f, encoding='utf-8')
     for line in f:
         result += ' {}'.format(line)
@@ -53,11 +52,11 @@ def run_search(matcher, pattern, text):
 
 if __name__ == '__main__':
     p = 'pattern'
-    # t = read_file(get_file('wiki-trie'))
+    # t = read_file(get_file('wikipedia_trie'))
     # t = read_file(get_file('sherlock'))
     t = read_file(get_file('big'))
-    # t = abc.words()
+    # t = read_file(get_file('super_big'))
     run_search(BruteForce(), p, t)
-    # run_search(BoyerMoore(), p, t)
+    run_search(BoyerMoore(), p, t)
     # run_search(KMP(), p, t)
     # run_search(Trie(), p, t)
