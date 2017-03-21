@@ -41,8 +41,9 @@ def run_sort(sorter, data):
     print(sorter.__class__.__name__)
     print('---------------')
     if DEBUG_MODE:
-        print(data[0:20])
-        print(data2[0:20])
+        # check the list is sorted
+        if not all(b >= a for a, b in zip(data2, data2[1:])):
+            print('Not sorted\n  {}...\n  {}...\n'.format(data[0:20], data2[0:20]))
     # median
     print('  Median time: {}s'.format(round(median(times), PRECISION)))
 
@@ -55,7 +56,7 @@ def run_sort(sorter, data):
 
 
 if __name__ == '__main__':
-    d = read_file('./data/integers/1000.txt')
+    d = read_file('./data/integers/100.txt')
     run_sort(BubbleSort(), d)
     run_sort(InsertionSort(), d)
     run_sort(SelectionSort(), d)
