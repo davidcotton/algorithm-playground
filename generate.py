@@ -9,7 +9,7 @@ from random import randint
 
 MAX_INT = 1000000
 NUM_INT = 10000000
-DATA_DIR = 'data'
+DATA_DIR = 'integers'
 
 
 def gen_integers(n, max_n):

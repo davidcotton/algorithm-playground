@@ -6,7 +6,7 @@
 
 class ArrayStack:
     """
-    The array stack uses an array (or in Python's case a list) to hold its data.
+    The array stack uses an array (or in Python's case a list) to hold its integers.
     As it's Python we don't need to worry about dynamically resizing the list as it grows.
     """
 
@@ -47,7 +47,7 @@ class ArrayStack:
 
 class LinkedStack:
     """
-    This linked stack uses a linked list to store its data.
+    This linked stack uses a linked list to store its integers.
     """
     class Node:
         def __init__(self, element, prev, next):
@@ -100,13 +100,13 @@ class LinkedStack:
         # if self.is_empty():
         #     return None
         # self.size -= 1
-        # return self.data.pop()
+        # return self.integers.pop()
 
     def top(self):
         """Returns the top element of the stack without removing it."""
         # if self.is_empty():
         #     return None
-        # return self.data[self.size]
+        # return self.integers[self.size]
 
     def size(self):
         """Returns the number of elements in the stack."""

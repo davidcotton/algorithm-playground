@@ -9,6 +9,17 @@ in Python and test their efficiency.
 
     python generate.py
 
+## Data Structures
++ singly linked list
++ doubly linked list
++ stack
++ priority queue
++ heap
+
+## Graphs
++ breadth first search
++ depth first search
+
 ## Sorting
 + bubble sort
 + insertion sort
@@ -16,12 +27,15 @@ in Python and test their efficiency.
 + heap sort
 + merge sort
 + quick sort
-+ bucket sort
 + radix sort
++ bucket sort
 
-## Data Structures
-+ singly linked list
-+ doubly linked list
-+ stack
-+ priority queue
-+ heap
+## Text Processing
+### Text Compression
++ burrows-wheeler transform
+
+### Text Search
++ brute force text search
++ boyer-moore
++ knuth-morris-pratt
++ trie
