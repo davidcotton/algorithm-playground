@@ -16,17 +16,14 @@ class RadixSort:
         Space Complexity:
           - O(w + N)
     """
-
-    @staticmethod
-    def sort(data):
+    def sort(self, data):
         num_digits = max(data)
         exp = 1
         while num_digits / exp > 0:
-            RadixSort.bucket_sort(data, exp)
+            self.bucket_sort(data, exp)
             exp *= 10
 
-    @staticmethod
-    def bucket_sort(data, exp):
+    def bucket_sort(self, data, exp):
         n = len(data)
         result = [0] * n
         count = [0] * 10

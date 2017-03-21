@@ -20,17 +20,15 @@ class SelectionSort:
           - O(1)
     """
 
-    @staticmethod
-    def sort(l):
-        for j in range(len(l)):
+    def sort(self, data):
+        for j in range(len(data)):
             i_min = j
-            for i in range(j + 1, len(l)):
-                if l[i] < l[i_min]:
+            for i in range(j + 1, len(data)):
+                if data[i] < data[i_min]:
                     i_min = i
-            l[i_min], l[j] = l[j], l[i_min]
-        return l
+            data[i_min], data[j] = data[j], data[i_min]
+        return data
 
 
 if __name__ == '__main__':
-    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-    print(SelectionSort().sort(data))
+    print(SelectionSort().sort([4, 2, 8, 6, 0, 5, 1, 7, 3, 9]))

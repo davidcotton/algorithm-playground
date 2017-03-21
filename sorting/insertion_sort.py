@@ -17,19 +17,16 @@ class InsertionSort:
         Space Complexity:
           - O(1)
     """
-
-    @staticmethod
-    def sort(l):
-        for i in range(1, len(l)):
-            temp = l[i]
+    def sort(self, data):
+        for i in range(1, len(data)):
+            temp = data[i]
             j = i - 1
-            while j >= 0 and l[j] > temp:
-                l[j + 1] = l[j]
+            while j >= 0 and data[j] > temp:
+                data[j + 1] = data[j]
                 j -= 1
-            l[j + 1] = temp
-        return l
+            data[j + 1] = temp
+        return data
 
 
 if __name__ == '__main__':
-    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-    print(InsertionSort().sort(data))
+    print(InsertionSort().sort([4, 2, 8, 6, 0, 5, 1, 7, 3, 9]))

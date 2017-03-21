@@ -18,9 +18,7 @@ class MergeSort:
         Space Complexity:
           - O(n)
     """
-
-    @staticmethod
-    def sort(l):
+    def sort(self, l):
         if len(l) < 2:
             return l
 
@@ -28,13 +26,12 @@ class MergeSort:
         l1 = l[0:mid]
         l2 = l[mid:len(l)]
 
-        l1 = MergeSort.sort(l1)
-        l2 = MergeSort.sort(l2)
+        l1 = self.sort(l1)
+        l2 = self.sort(l2)
 
-        return MergeSort.merge(l1, l2, l)
+        return self.merge(l1, l2, l)
 
-    @staticmethod
-    def merge(l1, l2, l):
+    def merge(self, l1, l2, l):
         """Merge two sorted sequences."""
         i = j = 0
         while i + j < len(l):
@@ -48,5 +45,4 @@ class MergeSort:
 
 
 if __name__ == '__main__':
-    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-    print(MergeSort().sort(data))
+    print(MergeSort().sort([4, 2, 8, 6, 0, 5, 1, 7, 3, 9]))

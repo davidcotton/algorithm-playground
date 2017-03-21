@@ -16,12 +16,9 @@ class HeapSort:
         Space Complexity:
           - O(n)
     """
-
-    @staticmethod
-    def sort(l):
-        return l
+    def sort(self, data):
+        raise RuntimeError('Not implemented yet')
 
 
 if __name__ == '__main__':
-    data = [4, 2, 8, 6, 0, 5, 1, 7, 3, 9]
-    print(HeapSort().sort(data))
+    print(HeapSort().sort([4, 2, 8, 6, 0, 5, 1, 7, 3, 9]))

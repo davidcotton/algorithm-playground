@@ -5,15 +5,14 @@ from bucket_sort import BucketSort
 from heap_sort import HeapSort
 from insertion_sort import InsertionSort
 from merge_sort import MergeSort
-from quick_sort import QuickSort
+from quick_sort import RecursiveQuickSort, IterativeQuickSort
 from radix_sort import RadixSort
 from selection_sort import SelectionSort
-from copy import deepcopy
 import os.path
 from statistics import median
 from time import time
 
-NUM_SORTS = 1
+NUM_SORTS = 3
 PRECISION = 5
 DEBUG_MODE = True
 
@@ -33,7 +32,7 @@ def run_sort(sorter, data):
     times = []
     data2 = []
     for i in range(NUM_SORTS):
-        data2 = deepcopy(data)
+        data2 = list(data)
         t0 = time()
         sorter.sort(data2)
         times.append(time() - t0)
@@ -56,12 +55,13 @@ def run_sort(sorter, data):
 
 
 if __name__ == '__main__':
-    d = read_file('./data/integers/100.txt')
+    d = read_file('./data/integers/10000.txt')
     run_sort(BubbleSort(), d)
     run_sort(InsertionSort(), d)
     run_sort(SelectionSort(), d)
-    run_sort(HeapSort(), d)
+    # run_sort(HeapSort(), d)
     run_sort(MergeSort(), d)
-    # run_sort(QuickSort(), d)
+    run_sort(RecursiveQuickSort(), d)
+    run_sort(IterativeQuickSort(), d)
     run_sort(RadixSort(), d)
     run_sort(BucketSort(), d)
