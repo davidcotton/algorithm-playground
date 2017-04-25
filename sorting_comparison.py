@@ -6,13 +6,13 @@ from heap_sort import HeapSort
 from insertion_sort import InsertionSort
 from merge_sort import MergeSort
 from quick_sort import RecursiveQuickSort, IterativeQuickSort
-from radix_sort import RadixSort
+from radix_sort import RadixSort3
 from selection_sort import SelectionSort
 import os.path
 from statistics import median
 from time import time
 
-NUM_SORTS = 3
+NUM_SORTS = 1
 PRECISION = 5
 DEBUG_MODE = True
 
@@ -34,7 +34,7 @@ def run_sort(sorter, data):
     for i in range(NUM_SORTS):
         data2 = list(data)
         t0 = time()
-        sorter.sort(data2)
+        data2 = sorter.sort(data2)
         times.append(time() - t0)
 
     print(sorter.__class__.__name__)
@@ -55,13 +55,13 @@ def run_sort(sorter, data):
 
 
 if __name__ == '__main__':
-    d = read_file('./data/integers/10000.txt')
-    run_sort(BubbleSort(), d)
-    run_sort(InsertionSort(), d)
-    run_sort(SelectionSort(), d)
+    d = read_file('./data/integers/1000.txt')
+    # run_sort(BubbleSort(), d)
+    # run_sort(InsertionSort(), d)
+    # run_sort(SelectionSort(), d)
     # run_sort(HeapSort(), d)
     run_sort(MergeSort(), d)
     run_sort(RecursiveQuickSort(), d)
     run_sort(IterativeQuickSort(), d)
-    run_sort(RadixSort(), d)
+    run_sort(RadixSort3(), d)
     run_sort(BucketSort(), d)

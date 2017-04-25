@@ -44,6 +44,7 @@ class BucketSort:
         result = []
         for i, b in enumerate(buckets):
             result += sorter.sort(b)
+
         return result
 
     def get_bucket_size(self, min_n, max_n):
