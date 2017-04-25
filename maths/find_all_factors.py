@@ -1,9 +1,7 @@
 """Find all factors of a number."""
 
 import math
-from time import time
 import timeit
-from functools import reduce
 
 
 def factors_naive(n):
@@ -40,10 +38,12 @@ def factors_improved(n):
 
 
 def factors_double_improved(n):
+    """Improved the less than square root method for even numbers."""
     # trivial case
     if n == 1:
         return {1}
 
+    # use a step for even numbers
     step = 2 if n % 2 == 0 else 1
     factors = {1, n}
     max_d = int(math.sqrt(n))
