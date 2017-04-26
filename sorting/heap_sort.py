@@ -1,5 +1,7 @@
 """
-    Heap sort.
+    Heap sort is a comparison-based sorting algorithm.
+
+    Heap sort uses the "heap" data-structure
 """
 
 
