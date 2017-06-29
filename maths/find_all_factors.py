@@ -1,18 +1,17 @@
 """Find all factors of a number."""
 
 import math
-import timeit
+from time_method import time_method
 
 
 def factors_naive(n):
     """A naive/brute-force solution for summing a numbers factors.
     
-    Loop through all numbers between 1 and n searching for factors.
-    """
+    Loop through all numbers between 1 and n searching for factors."""
     return {x for x in range(1, n + 1) if n % x == 0}
 
 
-def factors_improved(n):
+def factors_maxsqrt(n):
     """An improved method for summing the factors of a number.
     
     All factors of a number are paired, e.g. 6 has factors (1, 6) & (2, 3)
@@ -20,8 +19,7 @@ def factors_improved(n):
     We can reduce the search space by searching up to sqrt(n).
     
     We can assume that 1 & n will always be factors (n != 1) 
-    to reduce our search between 2 & sqrt(n).
-    """
+    to reduce our search between 2 & sqrt(n)."""
     # trivial case
     if n == 1:
         return {1}
@@ -37,7 +35,7 @@ def factors_improved(n):
     return factors
 
 
-def factors_double_improved(n):
+def factors_noeven_maxsqrt(n):
     """Improved the less than square root method for even numbers."""
     # trivial case
     if n == 1:
@@ -56,18 +54,6 @@ def factors_double_improved(n):
     return factors
 
 
-def time_method(fn, n):
-    """Time how long each method takes."""
-    return '{} took {}'.format(
-        fn.__name__,
-        timeit.timeit(
-            '{}({})'.format(fn.__name__, n),
-            setup='from __main__ import {}'.format(fn.__name__),
-            number=3
-        )
-    )
-
-
 def find_broken_methods(n, good_fn, dubious_fn):
     """Test helper for debugging."""
     for i in range(1, n + 1):
@@ -80,7 +66,7 @@ def find_broken_methods(n, good_fn, dubious_fn):
 if __name__ == '__main__':
     # find_broken_methods(100, factors_naive, factors_1)
 
-    num = 12345678
+    num = 123456789
     print(time_method(factors_naive, num))
-    print(time_method(factors_improved, num))
-    print(time_method(factors_double_improved, num))
+    print(time_method(factors_maxsqrt, num))
+    print(time_method(factors_noeven_maxsqrt, num))
