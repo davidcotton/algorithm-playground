@@ -78,7 +78,12 @@ def sieve(n):
 
 
 if __name__ == '__main__':
-    num = 123456783456345734534533447
+    # a few largish primes to test a full loop
+    num = 1299709
+    # num = 15485863
+    # num = 179424673
+
     print(time_method(is_prime_naive, num))
     print(time_method(is_prime_noeven, num))
+    print(time_method(is_prime_maxsqrt, num))
     print(time_method(is_prime_noeven_maxsqrt, num))
