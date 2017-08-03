@@ -29,6 +29,13 @@ class BinaryTree:
             else:
                 node.right = Node(val)
 
+    def __repr__(self):
+        result = ''
+        levels = []
+        # while
+
+        return result
+
 
 class Node:
     def __init__(self, val):
@@ -55,14 +62,14 @@ class Node:
 if __name__ == '__main__':
     bt = BinaryTree()
     # print(bt)
-    bt.add(1)
+    bt.add(3)
     # print(bt)
     bt.add(2)
     # print(bt)
-    bt.add(3)
-    # print(bt)
     bt.add(4)
     # print(bt)
-    # bt.pop()
+    bt.add(1)
     # print(bt)
+    # bt.pop()
+    print(bt)
     derp = 1
