@@ -11,6 +11,10 @@ class Heap(ABC):
             self.insert(arg)
 
     @abstractmethod
+    def size(self):
+        pass
+
+    @abstractmethod
     def empty(self):
         pass
 
@@ -42,6 +46,9 @@ class BinaryHeap(Heap):
 
     def __repr__(self):
         return 'BinaryHeap<{}>'.format(', '.join(str(x) for x in self.data))
+
+    def size(self):
+        return self.size
 
     def empty(self):
         return self.size == 0
