@@ -83,8 +83,16 @@ def trial_division(n):
     return prime_factors
 
 
-def prime_sieve():
-    pass
+def prime_sieve(n):
+    primes = [True] * n
+    primes[0] = primes[1] = False
+
+    for (i, isprime) in enumerate(primes):
+        if isprime:
+            yield i
+            for m in range(i * i, n, i):
+                primes[m] = False
+    return primes
 
 
 def find_broken_methods(n, good_fn, dubious_fn):

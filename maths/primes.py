@@ -73,10 +73,6 @@ def is_prime_noeven_maxsqrt(n):
     return True
 
 
-def sieve(n):
-    pass
-
-
 if __name__ == '__main__':
     # a few largish primes to test a full loop
     num = 1299709
