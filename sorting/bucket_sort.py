@@ -47,8 +47,8 @@ class BucketSort:
 
         return result
 
-    def get_bucket_size(self, min_n, max_n):
-        return floor((max_n - min_n) / self.BUCKET_SIZE)
+    def get_bucket_size(self, min_n, max_n) -> int:
+        return int(floor((max_n - min_n) / self.BUCKET_SIZE))
 
 
 if __name__ == '__main__':
