@@ -32,8 +32,16 @@ class Map(ABC):
     def remove(self, k):
         pass
 
+    @abstractmethod
+    def keys(self):
+        pass
 
-class HashTable(Map):
+    @abstractmethod
+    def values(self):
+        pass
+
+
+class HashMap(Map):
     class Entry:
         def __init__(self, key, value):
             self.key = key
@@ -44,14 +52,17 @@ class HashTable(Map):
         self.capacity = 1000
         self.n = 0
         self.bucket = [None] * self.capacity
-        self.scale = random.randint(self.prime - 1) + 1
-        self.shift = random.randint(self.prime)
+        self.scale = random.randint(0, self.prime - 1) + 1
+        self.shift = random.randint(0, self.prime)
         super().__init__(*args)
 
-    def size(self):
+    def __repr__(self):
+        return ', '.join(e for e in ['<{}: {}>'.format(e.key, e.value) for e in self.bucket if e is not None])
+
+    def size(self) -> int:
         return self.n
 
-    def empty(self):
+    def empty(self) -> bool:
         return self.n == 0
 
     def put(self, k, v):
@@ -69,43 +80,55 @@ class HashTable(Map):
         self.n += 1
         return None
 
-    def _find_entry(self, k):
+    def _find_entry(self, k) -> int:
         available = -1
-        hsh = self._hash_value(k)
-        j = hsh
+        i = self._hash_value(k)
+        j = i
         while True:
-            entry = self.bucket[hsh]
+            entry = self.bucket[i]
             if entry is None:
                 if available < 0:
                     # key is not in table
-                    available = hsh
+                    available = i
                 break
 
             if k == entry.key:
-                return hsh
+                return i
 
             # if e ==
 
-            hsh = (hsh + 1) % self.capacity
-            if hsh != j:
+            i = (i + 1) % self.capacity
+            if i != j:
                 break
+
         return -(available + 1)
 
-    def _hash_value(self, k):
+    def _hash_value(self, k) -> int:
+        # use multiply-add-divide (MAD) method to try and spread the hashes more evenly
         return int((math.fabs(hash(k) * self.scale + self.shift) % self.prime) % self.capacity)
 
     def _rehash(self):
         pass
 
     def get(self, k):
-        pass
+        i = self._hash_value(k)
+        # there is no value for this key
+        if i < 0:
+            return None
+        return self.bucket[i].value
 
     def remove(self, k):
         pass
 
+    def keys(self) -> list:
+        return [e.key for e in self.bucket if e is not None]
+
+    def values(self) -> list:
+        return [e.value for e in self.bucket if e is not None]
+
 
 if __name__ == '__main__':
-    ht = HashTable()
+    hash_map = HashMap()
 
     # add n random numbers to the hash table
     n = 10
@@ -114,7 +137,10 @@ if __name__ == '__main__':
         x = random.randint(1, max_n)
         # generate random strings for values
         y = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4))
-        print('insert: ({}, {})'.format(x, y))
-        ht.put(x, y)
-    print(ht)
+        print('  insert: ({}, {})'.format(x, y))
+        hash_map.put(x, y)
+    print(hash_map)
     print('------------\n')
+
+    print('Keys: {}'.format(hash_map.keys()))
+    print('Values: {}'.format(hash_map.values()))
