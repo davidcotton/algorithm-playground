@@ -4,6 +4,10 @@
     Heap sort uses the "heap" data-structure
 """
 
+from datastructures.heap import BinaryHeap
+from itertools import takewhile
+import random
+
 
 class HeapSort:
     """
@@ -19,8 +23,21 @@ class HeapSort:
           - O(n)
     """
     def sort(self, data):
-        raise RuntimeError('Not implemented yet')
+        heap = BinaryHeap()
+        for d in data:
+            heap.insert(d)
+
+        result = []
+        while not heap.empty():
+            result.append(heap.remove_min())
+
+        return result
 
 
 if __name__ == '__main__':
-    print(HeapSort().sort([4, 2, 8, 6, 0, 5, 1, 7, 3, 9]))
+    # print(HeapSort().sort([4, 2, 8, 6, 0, 5, 1, 7, 3, 9]))
+
+    n = 20
+    max_n = 1000
+    data = [random.randint(1, max_n) for _ in range(n)]
+    print(HeapSort().sort(data))

@@ -12,7 +12,7 @@ import os.path
 from statistics import median
 from time import time
 
-NUM_SORTS = 1
+NUM_SORTS = 3
 PRECISION = 5
 DEBUG_MODE = True
 
@@ -56,12 +56,12 @@ def run_sort(sorter, data):
 
 if __name__ == '__main__':
     d = read_file('./data/integers/1000.txt')
-    # run_sort(BubbleSort(), d)
-    # run_sort(InsertionSort(), d)
-    # run_sort(SelectionSort(), d)
-    # run_sort(HeapSort(), d)
+    run_sort(BubbleSort(), d)
+    run_sort(InsertionSort(), d)
+    run_sort(SelectionSort(), d)
+    run_sort(HeapSort(), d)
     run_sort(MergeSort(), d)
     run_sort(RecursiveQuickSort(), d)
     run_sort(IterativeQuickSort(), d)
-    run_sort(RadixSort3(), d)
-    run_sort(BucketSort(), d)
+    # run_sort(RadixSort3(), d)
+    # run_sort(BucketSort(), d)
