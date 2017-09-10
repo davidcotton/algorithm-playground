@@ -8,8 +8,10 @@ def is_prime_naive(n):
     # trivial case
     if n <= 1:
         return False
+    if n == 2:
+        return True
 
-    for i in range(2, n):
+    for i in range(3, n):
         if n % i == 0:
             return False
     return True
@@ -22,10 +24,10 @@ def is_prime_noeven(n):
     # trivial case
     if n <= 1:
         return False
+    if n == 2:
+        return True
 
     # check even numbers
-    if n == 2:
-        return False
     if n % 2 == 0:
         return False
 
@@ -43,9 +45,11 @@ def is_prime_maxsqrt(n):
     # trivial case
     if n <= 1:
         return False
+    if n == 2:
+        return True
 
     m = int(math.sqrt(n))
-    for i in range(2, m):
+    for i in range(3, m):
         if n % i == 0:
             return False
     return True
@@ -59,10 +63,10 @@ def is_prime_noeven_maxsqrt(n):
     # trivial case
     if n <= 1:
         return False
+    if n == 2:
+        return True
 
     # check even numbers
-    if n == 2:
-        return False
     if n % 2 == 0:
         return False
 
