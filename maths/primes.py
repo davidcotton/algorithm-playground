@@ -1,5 +1,6 @@
-from time_method import time_method
 import math
+
+from time_method import time_method_pp
 
 
 def is_prime_naive(n):
@@ -79,7 +80,7 @@ if __name__ == '__main__':
     # num = 15485863
     # num = 179424673
 
-    print(time_method(is_prime_naive, num))
-    print(time_method(is_prime_noeven, num))
-    print(time_method(is_prime_maxsqrt, num))
-    print(time_method(is_prime_noeven_maxsqrt, num))
+    print(time_method_pp(is_prime_naive, num))
+    print(time_method_pp(is_prime_noeven, num))
+    print(time_method_pp(is_prime_maxsqrt, num))
+    print(time_method_pp(is_prime_noeven_maxsqrt, num))

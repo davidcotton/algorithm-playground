@@ -12,12 +12,18 @@ def inner(_it, _timer{init}):
 """
 
 
+def time_method_pp(fn, n):
+    """Pretty print a method's run time."""
+    name, time, result = time_method(fn, n)
+    return '{} took {} and the result was \n  {}'.format(name, time, result)
+
+
 def time_method(fn, n):
     """Time how long each method takes.
-    Return a string with the name of the function, the time it took and the result."""
+    Return the name of the function, the time it took and the result."""
     time, result = timeit.timeit(
         '{}({})'.format(fn.__name__, n),
         setup='from __main__ import {}'.format(fn.__name__),
         number=3
     )
-    return '{} took {} and the result was \n  {}'.format(fn.__name__, time, result)
+    return fn.__name__, time, result

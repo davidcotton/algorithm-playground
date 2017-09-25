@@ -1,7 +1,8 @@
 """Find all factors of a number."""
 
 import math
-from time_method import time_method
+
+from time_method import time_method_pp
 
 
 def factors_naive(n):
@@ -111,7 +112,7 @@ if __name__ == '__main__':
     num = 12345678
     # num = 123456789
 
-    print(time_method(factors_naive, num))
-    print(time_method(factors_noeven, num))
-    print(time_method(factors_maxsqrt, num))
+    print(time_method_pp(factors_naive, num))
+    print(time_method_pp(factors_noeven, num))
+    print(time_method_pp(factors_maxsqrt, num))
     # print(time_method(factors_noeven_maxsqrt, num))
