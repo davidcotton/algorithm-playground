@@ -1,52 +1,20 @@
-"""
-    Binary tree.
-"""
+"""Binary Tree interface."""
+
+from tree import Tree, Node
+from abc import abstractmethod
 
 
-class BinaryTree:
-    def __init__(self):
-        self.root = None
-
-    def root(self):
-        return self.root
-
-    def add(self, val):
-        """Add a value to a binary tree."""
-        if self.root is None:
-            self.root = Node(val)
-        else:
-            self._add(val, self.root)
-
-    def _add(self, val, node):
-        if val < node.val:
-            if node.has_left():
-                self._add(val, node.left)
-            else:
-                node.left = Node(val)
-        else:
-            if node.has_right():
-                self._add(val, node.right)
-            else:
-                node.right = Node(val)
-
-    def __repr__(self):
-        result = ''
-        levels = []
-        # while
-
-        return result
-
-
-class Node:
-    def __init__(self, val):
-        self.val = val
+class BinaryNode(Node):
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
         self.left = None
         self.right = None
 
-    def has_left(self):
+    def has_left(self) -> bool:
         return self.left is not None
 
-    def has_right(self):
+    def has_right(self) -> bool:
         return self.right is not None
 
     def get_left(self):
@@ -56,20 +24,26 @@ class Node:
         return self.right
 
     def __repr__(self):
-        return 'Node<{}>'.format(self.val)
+        return 'Node<{}:{}>'.format(self.key, self.value)
 
 
-if __name__ == '__main__':
-    bt = BinaryTree()
-    # print(bt)
-    bt.add(3)
-    # print(bt)
-    bt.add(2)
-    # print(bt)
-    bt.add(4)
-    # print(bt)
-    bt.add(1)
-    # print(bt)
-    # bt.pop()
-    print(bt)
-    derp = 1
+class BinaryTree(Tree):
+    @abstractmethod
+    def left(self, node: BinaryNode) -> BinaryNode:
+        """Returns the left child of a node."""
+        pass
+
+    @abstractmethod
+    def right(self, node: BinaryNode) -> BinaryNode:
+        """Returns the right child of a node."""
+        pass
+
+    @abstractmethod
+    def has_left(self, node: BinaryNode) -> bool:
+        """Returns whether a node has a left child."""
+        pass
+
+    @abstractmethod
+    def has_right(self, node: BinaryNode) -> bool:
+        """Returns whether a node has a right child."""
+        pass
