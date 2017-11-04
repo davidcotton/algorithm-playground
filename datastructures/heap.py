@@ -1,7 +1,6 @@
 """A heap is a specialised tree-based data structure that satisfies the heap property."""
 
 from abc import ABC, abstractmethod
-from random import randint
 
 
 class Heap(ABC):
@@ -11,15 +10,18 @@ class Heap(ABC):
             self.insert(arg)
 
     @abstractmethod
-    def size(self):
+    def size(self) -> int:
+        """Returns the number of elements in the heap."""
         pass
 
     @abstractmethod
-    def empty(self):
+    def empty(self) -> bool:
+        """Returns whether the heap is empty."""
         pass
 
     @abstractmethod
     def insert(self, k):
+        """Insert an entry into the heap."""
         pass
 
     @abstractmethod
@@ -47,13 +49,16 @@ class BinaryHeap(Heap):
     def __repr__(self):
         return 'BinaryHeap<{}>'.format(', '.join(str(x) for x in self.data))
 
-    def size(self):
+    def size(self) -> int:
+        """Returns the number of elements in the heap."""
         return self.size
 
-    def empty(self):
+    def empty(self) -> bool:
+        """Returns whether the heap is empty."""
         return self.size == 0
 
     def insert(self, k):
+        """Insert an entry into the heap."""
         self.data.append(k)
         self.size += 1
         self._upheap(self.size)
@@ -100,6 +105,8 @@ class BinaryHeap(Heap):
 
 
 if __name__ == '__main__':
+    from random import randint
+
     heap = BinaryHeap()
 
     # add n random numbers to the heap

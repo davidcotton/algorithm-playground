@@ -2,8 +2,6 @@
 
 from abc import ABC, abstractmethod
 from heap import BinaryHeap
-import string
-import random
 
 
 class PriorityQueue(ABC):
@@ -13,19 +11,23 @@ class PriorityQueue(ABC):
             self.enqueue(arg)
 
     @abstractmethod
-    def size(self):
+    def size(self) -> int:
+        """Returns the number of elements in the priority queue."""
         pass
 
     @abstractmethod
-    def empty(self):
+    def empty(self) -> bool:
+        """Returns whether the priority queue is empty."""
         pass
 
     @abstractmethod
     def enqueue(self, k, v):
+        """Enqueue an entry in the priority queue."""
         pass
 
     @abstractmethod
     def dequeue(self):
+        """Dequeue an entry from the priority queue."""
         pass
 
 
@@ -39,15 +41,19 @@ class HeapPriorityQueue(PriorityQueue):
         return self.heap.__repr__()
 
     def size(self):
+        """Returns the number of elements in the priority queue."""
         return self.heap.size
 
     def empty(self):
+        """Returns whether the priority queue is empty."""
         return self.heap.empty()
 
     def enqueue(self, k, v):
+        """Enqueue an entry in the priority queue."""
         self.heap.insert((k, v))
 
     def dequeue(self):
+        """Dequeue an entry from the priority queue."""
         if self.empty():
             return None
         else:
@@ -55,6 +61,9 @@ class HeapPriorityQueue(PriorityQueue):
 
 
 if __name__ == '__main__':
+    import string
+    import random
+
     pq = HeapPriorityQueue()
 
     # add n random numbers to the priority queue
