@@ -14,6 +14,14 @@ class Stack(ABC):
             self.push(arg)
 
     @abstractmethod
+    def size(self) -> int:
+        pass
+
+    @abstractmethod
+    def is_empty(self) -> bool:
+        pass
+
+    @abstractmethod
     def push(self, e):
         pass
 
@@ -23,14 +31,6 @@ class Stack(ABC):
 
     @abstractmethod
     def top(self):
-        pass
-
-    @abstractmethod
-    def size(self):
-        pass
-
-    @abstractmethod
-    def empty(self):
         pass
 
     @abstractmethod
@@ -39,18 +39,20 @@ class Stack(ABC):
 
 
 class ArrayStack(Stack):
-    """
-    The array stack uses an array (or in Python's case a list) to hold its integers.
-    As it's Python we don't need to worry about dynamically resizing the list as it grows.
-    """
+    """The array stack uses an array (or in Python's case a list) to hold its integers.
+    As it's Python we don't need to worry about dynamically resizing the list as it grows."""
     def __init__(self, *args):
         self.size = 0
         self.data = []
         super().__init__(*args)
 
-    def __repr__(self):
-        result = ', '.join(str(x) for x in self.data)
-        return '<{}>'.format(result)
+    def size(self) -> int:
+        """Returns the number of elements in the stack."""
+        return self.size
+
+    def is_empty(self) -> bool:
+        """Returns whether the stack is empty."""
+        return self.size == 0
 
     def push(self, e):
         """Adds an element to the top of the stack."""
@@ -59,30 +61,23 @@ class ArrayStack(Stack):
 
     def pop(self):
         """Removes and returns the top element from the stack."""
-        if self.empty():
+        if self.is_empty():
             return None
         self.size -= 1
         return self.data.pop()
 
     def top(self):
         """Returns the top element of the stack without removing it."""
-        if self.empty():
+        if self.is_empty():
             return None
         return self.data[self.size]
 
-    def size(self):
-        """Returns the number of elements in the stack."""
-        return self.size
-
-    def empty(self):
-        """Returns whether the stack is empty."""
-        return self.size == 0
+    def __repr__(self):
+        return '<{}>'.format(', '.join(str(x) for x in self.data))
 
 
 class LinkedStack(Stack):
-    """
-    This linked stack uses a linked list to store its integers.
-    """
+    """A stack data structure that uses a linked list to store its data."""
     class Node:
         def __init__(self, element, prev, next):
             self.element = element
@@ -113,17 +108,13 @@ class LinkedStack(Stack):
         self.size = 0
         super().__init__(*args)
 
-    def __repr__(self):
-        result = ''
-        if not self.empty():
-            node = self.head
-            result += str(node.element)
-            node = node.get_next()
-            while node:
-                result += ', {}'.format(node.element)
-                node = node.get_next()
+    def size(self) -> int:
+        """Returns the number of elements in the stack."""
+        return self.size
 
-        return 'Stack<{}>'.format(result)
+    def is_empty(self) -> bool:
+        """Returns whether the stack is empty."""
+        return self.size == 0
 
     def push(self, e):
         """Adds an element to the top of the stack."""
@@ -143,13 +134,16 @@ class LinkedStack(Stack):
         #     return None
         # return self.integers[self.size]
 
-    def size(self):
-        """Returns the number of elements in the stack."""
-        return self.size
-
-    def empty(self):
-        """Returns whether the stack is empty."""
-        return self.size == 0
+    def __repr__(self):
+        result = ''
+        if not self.is_empty():
+            node = self.head
+            result += str(node.element)
+            node = node.get_next()
+            while node:
+                result += ', {}'.format(node.element)
+                node = node.get_next()
+        return 'Stack<{}>'.format(result)
 
 
 if __name__ == '__main__':
