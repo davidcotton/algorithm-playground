@@ -15,7 +15,7 @@ class Heap(ABC):
         pass
 
     @abstractmethod
-    def empty(self) -> bool:
+    def is_empty(self) -> bool:
         """Returns whether the heap is empty."""
         pass
 
@@ -53,7 +53,7 @@ class BinaryHeap(Heap):
         """Returns the number of elements in the heap."""
         return self.size
 
-    def empty(self) -> bool:
+    def is_empty(self) -> bool:
         """Returns whether the heap is empty."""
         return self.size == 0
 
@@ -64,7 +64,7 @@ class BinaryHeap(Heap):
         self._upheap(self.size)
 
     def min(self):
-        if self.empty():
+        if self.is_empty():
             return None
         else:
             return self.data[1]

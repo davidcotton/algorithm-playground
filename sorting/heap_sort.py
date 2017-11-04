@@ -1,12 +1,8 @@
-"""
-    Heap sort is a comparison-based sorting algorithm.
-
-    Heap sort uses the "heap" data-structure
+"""Heap sort is a comparison-based sorting algorithm.
+Heap sort uses the "heap" data-structure
 """
 
 from datastructures.heap import BinaryHeap
-from itertools import takewhile
-import random
 
 
 class HeapSort:
@@ -35,6 +31,8 @@ class HeapSort:
 
 
 if __name__ == '__main__':
+    import random
+
     # print(HeapSort().sort([4, 2, 8, 6, 0, 5, 1, 7, 3, 9]))
 
     n = 20
