@@ -59,7 +59,7 @@ class IterativeQuickSort(QuickSort):
             return data
 
         stack = ArrayStack((0, len(data) - 1))
-        while not stack.empty():
+        while not stack.is_empty():
             left, right = stack.pop()
             pivot = self.partition(data, left, right)
 
