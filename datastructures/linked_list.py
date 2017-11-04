@@ -10,7 +10,7 @@ class LinkedList(ABC):
         for arg in args:
             self.prepend(arg)
 
-    def empty(self):
+    def is_empty(self) -> bool:
         return self.len == 0
 
     @abstractmethod
@@ -19,7 +19,7 @@ class LinkedList(ABC):
 
     def __repr__(self):
         result = ''
-        if not self.empty():
+        if not self.is_empty():
             node = self.head
             result += str(node.element)
             node = node.get_next()
@@ -54,7 +54,7 @@ class SinglyLinkedList(LinkedList):
 
     def prepend(self, element):
         self.head = self.Node(element, self.head)
-        if self.empty():
+        if self.is_empty():
             self.tail = self.head
         self.len += 1
 
@@ -91,7 +91,7 @@ class DoublyLinkedList(LinkedList):
 
     def prepend(self, element):
         node = self.Node(element, None, self.head)
-        if self.empty():
+        if self.is_empty():
             self.tail = self.head
         else:
             self.head.next = node

@@ -16,7 +16,7 @@ class PriorityQueue(ABC):
         pass
 
     @abstractmethod
-    def empty(self) -> bool:
+    def is_empty(self) -> bool:
         """Returns whether the priority queue is empty."""
         pass
 
@@ -40,13 +40,13 @@ class HeapPriorityQueue(PriorityQueue):
     def __repr__(self):
         return self.heap.__repr__()
 
-    def size(self):
+    def size(self) -> int:
         """Returns the number of elements in the priority queue."""
         return self.heap.size
 
-    def empty(self):
+    def is_empty(self) -> bool:
         """Returns whether the priority queue is empty."""
-        return self.heap.empty()
+        return self.heap.is_empty()
 
     def enqueue(self, k, v):
         """Enqueue an entry in the priority queue."""
@@ -54,7 +54,7 @@ class HeapPriorityQueue(PriorityQueue):
 
     def dequeue(self):
         """Dequeue an entry from the priority queue."""
-        if self.empty():
+        if self.is_empty():
             return None
         else:
             return self.heap.remove_min()
