@@ -3,7 +3,6 @@
 from abc import ABC, abstractmethod
 import math
 import random
-import string
 
 
 class Map(ABC):
@@ -13,31 +12,38 @@ class Map(ABC):
             self.put(k, v)
 
     @abstractmethod
-    def size(self):
+    def size(self) -> int:
+        """Returns the number of elements in the map."""
         pass
 
     @abstractmethod
-    def empty(self):
+    def is_empty(self) -> bool:
+        """Returns whether the map is empty."""
         pass
 
     @abstractmethod
     def put(self, k, v):
+        """Add an entry to the map."""
         pass
 
     @abstractmethod
     def get(self, k):
+        """Fetch an entry from the map."""
         pass
 
     @abstractmethod
     def remove(self, k):
+        """Remove an entry from the map."""
         pass
 
     @abstractmethod
     def keys(self):
+        """Returns a list of all keys in the map."""
         pass
 
     @abstractmethod
     def values(self):
+        """Returns a list of all values in the map."""
         pass
 
 
@@ -60,12 +66,15 @@ class HashMap(Map):
         return ', '.join(e for e in ['<{}: {}>'.format(e.key, e.value) for e in self.bucket if e is not None])
 
     def size(self) -> int:
+        """Returns the number of elements in the map."""
         return self.n
 
-    def empty(self) -> bool:
+    def is_empty(self) -> bool:
+        """Returns whether the map is empty."""
         return self.n == 0
 
     def put(self, k, v):
+        """Add an entry to the map."""
         # hash the key
         hsh = self._find_entry(k)
         # the key has an existing value
@@ -111,6 +120,7 @@ class HashMap(Map):
         pass
 
     def get(self, k):
+        """Fetch an entry from the map."""
         i = self._hash_value(k)
         # there is no value for this key
         if i < 0:
@@ -118,16 +128,21 @@ class HashMap(Map):
         return self.bucket[i].value
 
     def remove(self, k):
+        """Remove an entry from the map"""
         pass
 
     def keys(self) -> list:
+        """Returns a list of all keys in the map."""
         return [e.key for e in self.bucket if e is not None]
 
     def values(self) -> list:
+        """Returns a list of all values in the map."""
         return [e.value for e in self.bucket if e is not None]
 
 
 if __name__ == '__main__':
+    import string
+
     hash_map = HashMap()
 
     # add n random numbers to the hash table
