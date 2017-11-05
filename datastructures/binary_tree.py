@@ -8,8 +8,8 @@ class BinaryNode(Node):
     def __init__(self, key, value):
         self.key = key
         self.value = value
-        self.left = None
-        self.right = None
+        self.left: BinaryNode = None
+        self.right: BinaryNode = None
 
     def has_left(self) -> bool:
         return self.left is not None
