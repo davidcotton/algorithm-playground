@@ -5,9 +5,9 @@ from abc import abstractmethod
 
 
 class BinaryNode(Node):
-    def __init__(self, key, value):
-        self.key = key
+    def __init__(self, value, parent):
         self.value = value
+        self.parent: BinaryNode = parent
         self.left: BinaryNode = None
         self.right: BinaryNode = None
 
@@ -24,7 +24,7 @@ class BinaryNode(Node):
         return self.right
 
     def __repr__(self):
-        return 'Node<{}:{}>'.format(self.key, self.value)
+        return '<{}>'.format(self.value)
 
 
 class BinaryTree(Tree):
