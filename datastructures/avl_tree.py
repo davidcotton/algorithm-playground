@@ -32,9 +32,9 @@ class AVLNode(BinaryNode):
         return self.height
 
     def update_height(self):
-        left_height = self.left.height if self.left is not None else 0
-        right_height = self.right.height if self.right is not None else 0
-        self.height = 1 + max(left_height, right_height)
+        left_height = self.left.height + 1 if self.left is not None else 0
+        right_height = self.right.height + 1 if self.right is not None else 0
+        self.height = max(left_height, right_height)
         self.balance = left_height - right_height
 
     def __bool__(self):
@@ -218,135 +218,31 @@ class AVLTree(BinaryTree, Dictionary):
         """Returns whether a given node has children."""
         return self.has_left(node) and self.has_right(node)
 
-    # def preorder_print(self, node: AVLNode, result: list, n: int) -> list:
-    #     if node is None:
-    #         return result
-    #
-    #     level = []
-    #     if node.has_left():
-    #         level.append(str(node.left))
-    #     else:
-    #         level.append(None)
-    #     if node.has_right():
-    #         level.append(str(node.right))
-    #     else:
-    #         level.append(None)
-    #
-    #     if len(result) >= n:
-    #         result.append([])
-    #     result[n] = result[n] + level
-    #
-    #     self.preorder_print(node.left, result, n + 1)
-    #     self.preorder_print(node.right, result, n + 1)
-    #     return result
-
-    # def old(self):
-    #     result = '[AVLTree:{}]'.format(self.size)
-    #     if self.is_emtpy():
-    #         return result + ' - Empty'
-    #     else:
-    #         # convert tree to a list representation for printing
-    #         root = self.root
-    #         levels = self.preorder_print(root, [[root]], 1)
-    #         levels = [x for x in levels if x]  # remove empty lists
-    #         # print list representation
-    #         height = len(levels)
-    #         space = '  '
-    #         for i, level in enumerate(levels):
-    #             level_str = ''
-    #             m = height - (i + 1)
-    #             offset = space * m
-    #             level_str += offset + ' '
-    #             spaces = space * (i + 1)
-    #             spaces_i = space * m
-    #             # row of nodes
-    #             for j, node in enumerate(level):
-    #                 level_str += '{}{}'.format(str(node), spaces)
-    #             # row of lines
-    #             level_str += '\n' + offset
-    #             for _ in level:
-    #                 level_str += '/{}\\{}'.format(spaces_i, space)
-    #             result += '\n' + level_str
-    #     return result
-
-    # def __str__(self):
-    #     if self.is_emtpy():
-    #         return 'Empty'
-    #     else:
-    #         result =
-
-    # def print(self):
-    #     stack = []
-    #     node = self.root
-    #     self._print(node, stack)
-    #
-    # def _print(self, node: AVLNode, stack):
-    #     print(str(node))
-    #     if node.value is not None:
-    #         print('{} `--'.format())
-
     def __str__(self):
-        queue, out = [self.root], []
-        while queue:
-            out.append('{}'.format([str(node) for node in queue]))
-            if any(node for node in queue):
-                children = []
-                for node in queue:
-                    for subnode in (node.left, node.right):
-                        children.append(subnode if subnode else AVLNode(None))
-                queue = children
-            else:
-                break
+        queue, out, temp = [self.root], [], []
+        while queue and any(node for node in queue):
+            out.append(' '.join([str(node) for node in queue]))
+            for node in queue:
+                for subnode in (node.left, node.right):
+                    temp.append(subnode if subnode else AVLNode(None))
+            queue, temp = temp, []
         return '\n'.join(out)
 
 
 if __name__ == '__main__':
-    import string
-    import random
+    # a couple of test trees
+    # tree = AVLTree(37, 14, 13)
+    tree = AVLTree(16, 13, 4, 5, 6, 10, 11, 15, 14, 1)
+    # tree = AVLTree(4, 5, 8, 11, 12, 17, 18)
+    # tree = AVLTree(22, 10, 20, 12, 25, 28, 30, 36, 38, 40, 48)
+    # tree = AVLTree(25, 15, 50, 10, 22, 35, 70)
 
-    tree = AVLTree()
-
-    tree.insert(16)
-    tree.insert(13)
-    tree.insert(4)
-    tree.insert(5)
-    tree.insert(6)
-    tree.insert(10)
-    tree.insert(11)
-    tree.insert(15)
-    tree.insert(14)
-    tree.insert(1)
-
-    # tree.insert(4)
-    # tree.insert(5)
-    # tree.insert(8)
-    # tree.insert(11)
-    # tree.insert(12)
-    # tree.insert(17)
-    # tree.insert(18)
-
-    # tree.insert(22)
-    # tree.insert(10)
-    # tree.insert(20)
-    # tree.insert(12)
-    # tree.insert(25)
-    # tree.insert(28)
-    # tree.insert(30)
-    # tree.insert(36)
-    # tree.insert(38)
-    # tree.insert(40)
-    # tree.insert(48)
-
-    # tree.insert(25)
-    # tree.insert(15)
-    # tree.insert(50)
-    # tree.insert(10)
-    # tree.insert(22)
-    # tree.insert(35)
-    # tree.insert(70)
-
-    # add n random entries into the AVL tree
-    # n = 10
+    # or a random tree
+    # import string
+    # import random
+    #
+    # tree = AVLTree()
+    # n = 3
     # max_n = 100
     # for _ in range(n):
     #     x = random.randint(1, max_n)
@@ -354,4 +250,6 @@ if __name__ == '__main__':
     #     print('insert: ({}, {})'.format(x, y))
     #     tree.insert(x, y)
     # print('------------\n')
-    print(tree)
+
+    print(tree, '\n')
+    print('Tree size: {}'.format(tree.size))
