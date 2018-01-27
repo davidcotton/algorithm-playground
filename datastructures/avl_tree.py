@@ -43,28 +43,28 @@ class AVLNode(BinaryNode):
 
 class AVLTree(BinaryTree, Dictionary):
     def __init__(self, *args):
-        self.size: int = 0
-        self.height: int = 0
-        self.root: AVLNode = None
+        self._size: int = 0
+        self._height: int = 0
+        self._root: AVLNode = None
         super().__init__(*args)
 
     def size(self) -> int:
         """Returns the number of nodes in the tree."""
-        return self.size
+        return self._size
 
     def is_emtpy(self) -> bool:
         """Returns whether the tree is empty."""
-        return self.size == 0
+        return self._size == 0
 
     def insert(self, key, value=None) -> AVLNode:
         """Insert an entry into the AVL tree."""
-        if self.root is None:
-            self.size += 1
-            self.height += 1
-            self.root = AVLNode(key, value, None)
-            return self.root
+        if self._root is None:
+            self._size += 1
+            self._height += 1
+            self._root = AVLNode(key, value, None)
+            return self._root
         else:
-            node = self._insert(key, value, self.root)
+            node = self._insert(key, value, self._root)
             parent = self.parent(node)
             self._rebalance(parent)
             return node
@@ -74,14 +74,14 @@ class AVLTree(BinaryTree, Dictionary):
             if node.has_left():
                 return self._insert(key, value, node.left)
             else:
-                self.size += 1
+                self._size += 1
                 node.left = AVLNode(key, value, node)
                 return node.left
         else:
             if node.has_right():
                 return self._insert(key, value, node.right)
             else:
-                self.size += 1
+                self._size += 1
                 node.right = AVLNode(key, value, node)
                 return node.right
 
@@ -134,7 +134,7 @@ class AVLTree(BinaryTree, Dictionary):
         node.parent = pivot
 
         if is_left is None:
-            self.root = pivot
+            self._root = pivot
         elif is_left:
             pivot.parent.left = pivot
         else:
@@ -160,7 +160,7 @@ class AVLTree(BinaryTree, Dictionary):
         node.parent = pivot
 
         if is_left is None:
-            self.root = pivot
+            self._root = pivot
         elif is_left:
             pivot.parent.left = pivot
         else:
@@ -184,7 +184,7 @@ class AVLTree(BinaryTree, Dictionary):
 
     def root(self) -> AVLNode:
         """Returns the root node."""
-        return self.root
+        return self._root
 
     def parent(self, node: AVLNode) -> AVLNode:
         """Returns the parent of a given node."""
@@ -196,7 +196,7 @@ class AVLTree(BinaryTree, Dictionary):
 
     def is_root(self, node: AVLNode) -> bool:
         """Returns whether a given node is the root of the tree."""
-        return node == self.root
+        return node == self._root
 
     def left(self, node: AVLNode) -> AVLNode:
         """Returns the left child of a node."""
@@ -219,7 +219,7 @@ class AVLTree(BinaryTree, Dictionary):
         return self.has_left(node) and self.has_right(node)
 
     def __str__(self):
-        queue, out, temp = [self.root], [], []
+        queue, out, temp = [self._root], [], []
         while queue and any(node for node in queue):
             out.append(' '.join([str(node) for node in queue]))
             for node in queue:
@@ -232,24 +232,24 @@ class AVLTree(BinaryTree, Dictionary):
 if __name__ == '__main__':
     # a couple of test trees
     # tree = AVLTree(37, 14, 13)
-    tree = AVLTree(16, 13, 4, 5, 6, 10, 11, 15, 14, 1)
+    # tree = AVLTree(16, 13, 4, 5, 6, 10, 11, 15, 14, 1)
     # tree = AVLTree(4, 5, 8, 11, 12, 17, 18)
     # tree = AVLTree(22, 10, 20, 12, 25, 28, 30, 36, 38, 40, 48)
     # tree = AVLTree(25, 15, 50, 10, 22, 35, 70)
 
     # or a random tree
-    # import string
-    # import random
-    #
-    # tree = AVLTree()
-    # n = 3
-    # max_n = 100
-    # for _ in range(n):
-    #     x = random.randint(1, max_n)
-    #     y = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4))
-    #     print('insert: ({}, {})'.format(x, y))
-    #     tree.insert(x, y)
-    # print('------------\n')
+    import string
+    import random
+
+    tree = AVLTree()
+    n = 3
+    max_n = 100
+    for _ in range(n):
+        x = random.randint(1, max_n)
+        y = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4))
+        print('insert: ({}, {})'.format(x, y))
+        tree.insert(x, y)
+    print('------------\n')
 
     print(tree, '\n')
-    print('Tree size: {}'.format(tree.size))
+    print('Tree size: {}'.format(tree.size()))
