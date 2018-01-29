@@ -25,8 +25,7 @@ class BinaryNode(Node):
         return self.right
 
     def __repr__(self):
-        value = self.key if self.key is not None else '..'
-        return '<{}>'.format(value)
+        return '<{}>'.format(str(self.key).zfill(2) if self.key is not None else '..')
 
 
 class BinaryTree(Tree):

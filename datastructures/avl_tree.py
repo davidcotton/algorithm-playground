@@ -228,9 +228,28 @@ class AVLTree(BinaryTree, Dictionary):
             queue, temp = temp, []
         return '\n'.join(out)
 
+    def pretty_print(self):
+        queue, levels, temp = [self._root], [], []
+        while queue and any(node for node in queue):
+            levels.append([str(node) for node in queue])
+            for node in queue:
+                for subnode in (node.left, node.right):
+                    temp.append(subnode if subnode else AVLNode(None))
+            queue, temp = temp, []
+        height = len(levels)
+        width = 2 ** (height - 1)
+        output = ''
+        for i, level in enumerate(levels):
+            spaces = '    ' * (2 ** (height - i) - 1)
+            line = spaces.join(level)
+            output += line.center(width * 8) + '\n'
+        return output
+
 
 if __name__ == '__main__':
     # a couple of test trees
+    # tree = AVLTree(71, 63, 80, 4, 97, 98, 12)
+    # tree = AVLTree(73, 94, 15, 65, 93, 45, 61)
     # tree = AVLTree(37, 14, 13)
     # tree = AVLTree(16, 13, 4, 5, 6, 10, 11, 15, 14, 1)
     # tree = AVLTree(4, 5, 8, 11, 12, 17, 18)
@@ -242,7 +261,7 @@ if __name__ == '__main__':
     import random
 
     tree = AVLTree()
-    n = 3
+    n = 15
     max_n = 100
     for _ in range(n):
         x = random.randint(1, max_n)
@@ -251,5 +270,5 @@ if __name__ == '__main__':
         tree.insert(x, y)
     print('------------\n')
 
-    print(tree, '\n')
+    print(tree.pretty_print())
     print('Tree size: {}'.format(tree.size()))
