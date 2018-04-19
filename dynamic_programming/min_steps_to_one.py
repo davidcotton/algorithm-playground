@@ -6,6 +6,7 @@ On a positive integer, you can perform any one of the following 3 steps.
 Now the question is, given a positive integer n, find the minimum number of steps that takes n to 1
 """
 
+import argparse
 from time_method import time_method_pp
 
 
@@ -14,7 +15,7 @@ def memoization(n):
 
 
 def bottom_up(n):
-    dp = [None] * (n + 1)
+    dp: list = [None] * (n + 1)
     dp[1] = 0  # trivial case
     for i in range(2, n + 1):
         dp[i] = 1 + dp[i - 1]
@@ -26,6 +27,9 @@ def bottom_up(n):
 
 
 if __name__ == '__main__':
-    n = 9
-    print('Bottom up steps: {}'.format(bottom_up(n)))
-    # print('Memoization steps: {}'.format(memoization(n)))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--start', type=int, default=9, help='The number to start from')
+    args = parser.parse_args()
+    start = args.start
+    print('Bottom up steps: {}'.format(bottom_up(start)))
+    # print('Memoization steps: {}'.format(memoization(start)))
