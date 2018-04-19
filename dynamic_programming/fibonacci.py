@@ -6,14 +6,31 @@ import matplotlib.pyplot as plt
 import sys
 from time_method import time_method
 
+TIMEOUT = 5
+
 
 def recursive(n):
+    """Top-down recursive approach to calculating a fibonacci number.
+    O(2^n)"""
     if n < 2:
         return 1
     return recursive(n - 1) + recursive(n - 2)
 
 
+def dictionary(n):
+    """Bottom-up memoised approach to calculating a fibonacci number.
+    O(n)"""
+    m = {0: 1, 1: 1}
+    def fib(n):
+        if n not in m:
+            m[n] = fib(n - 1) + fib(n - 2)
+        return m[n]
+    fib(n)
+
+
 def dynamic_programming(n):
+    """Bottom-up dynamic programming approach to calculating a fibonacci number.
+    O()"""
     fib: list = [None] * (n + 1)
     fib[0] = 1
     fib[1] = 1
@@ -29,7 +46,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     steps = args.steps
     verbose = args.verbose
-    results = {'recursive': [], 'dynamic_programming': []}
+    results = {
+        # 'recursive': [],
+        'dictionary': [],
+        'dynamic_programming': []
+    }
     to_skip = []
     module = sys.modules[__name__]
     time = 0
@@ -40,7 +61,7 @@ if __name__ == '__main__':
                 if fn not in to_skip:
                     _, time, result = time_method(getattr(module, fn), i)
                     results[fn].append(time)
-                if time > 10:
+                if time > TIMEOUT:
                     print(f'skipping {fn} with time {time:.4f}')
                     to_skip.append(fn)
         except AttributeError:
