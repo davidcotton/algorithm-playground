@@ -2,25 +2,45 @@
 Just a repo for me to play with common data structures and algorithms 
 in Python and test their efficiency. 
 
-## Generating data
+## Requirements
+- Python 3.6
+- pip
+- virtualenv
+
+## Installation
+1. Create a virtualenv called `venv`
+
+        virtualenv venv
+
+1. Activate the `venv`
+
+        source venv/bin/activate
+
+1. Install dependencies
+
+        pip install -r requirements.txt
+
+## Usage
+
+### Generating testing data
 + Integers
 
-### Integers
+#### Integers
 
     python generate.py
 
-## Data Structures
+### Data Structures
 + singly linked list
 + doubly linked list
 + stack
 + priority queue
 + heap
 
-## Graphs
+### Graphs
 + breadth first search
 + depth first search
 
-## Sorting
+### Sorting
 + bubble sort
 + insertion sort
 + selection sort
@@ -30,11 +50,11 @@ in Python and test their efficiency.
 + radix sort
 + bucket sort
 
-## Text Processing
-### Text Compression
+### Text Processing
+#### Text Compression
 + burrows-wheeler transform
 
-### Text Search
+#### Text Search
 + brute force text search
 + boyer-moore
 + knuth-morris-pratt
