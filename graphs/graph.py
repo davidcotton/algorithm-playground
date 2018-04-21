@@ -1,15 +1,17 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, Set
+from typing import Dict, List
 
 
 class Vertex:
     """A graph vertex."""
-    def __init__(self, key: str) -> None:
+    def __init__(self, key) -> None:
         super().__init__()
-        self._key: str = str(key)
+        if not isinstance(key, (str, int, float)):
+            raise ValueError('Key must be a scalar value')
+        self._key = key
         self._neighbours: List[Vertex] = []
 
-    def key(self) -> str:
+    def key(self):
         return self._key
 
     def neighbours(self) -> list:
@@ -71,13 +73,13 @@ class Graph(ABC):
         pass
 
 
-class AdjacencyVertex(Vertex):
-    def __init__(self, key: str, neighbours=None) -> None:
+class AdjacencyListVertex(Vertex):
+    def __init__(self, key, neighbours=None) -> None:
         super().__init__(key)
         self._neighbours: List[Vertex] = neighbours if neighbours is not None else []
 
 
-class AdjacencyListArray(Graph):
+class AdjacencyListGraph(Graph):
     """An array backed implementation of an Adjacency List Graph."""
     def __init__(self, adjacency_list=None) -> None:
         self._vertices = []
@@ -87,21 +89,19 @@ class AdjacencyListArray(Graph):
 
     def vertices(self) -> List[Vertex]:
         """Get all vertices."""
-        vertices: Dict[str, Vertex] = {}
+        vertices: Dict[int, Vertex] = {}
         for i, neighbours in enumerate(self._vertices):
-            i = str(i)
             if i in vertices:
                 vertex = vertices[i]
             else:
-                vertex = AdjacencyVertex(i)
+                vertex = AdjacencyListVertex(i)
                 vertices[i] = vertex
 
             for n in neighbours:
-                n = str(n)
                 if n in vertices:
                     neighbour = vertices[n]
                 else:
-                    neighbour = AdjacencyVertex(n)
+                    neighbour = AdjacencyListVertex(n)
                     vertices[n] = neighbour
                 vertex.add_neighbour(neighbour)
         return list(vertices.values())
@@ -140,5 +140,11 @@ class AdjacencyListArray(Graph):
 
 
 def get_graph():
-    graph = AdjacencyListArray([[1, 2], [2, 3], [4], [4, 5], [5], []])
+    graph = AdjacencyListGraph([[1, 2], [2, 3], [4], [4, 5], [5], []])
+    return graph
+
+
+def generate_graph(n):
+    graph = AdjacencyListGraph()
+
     return graph

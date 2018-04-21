@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import sys
 from time_method import time_method
 from graphs.bfs import bfs_search, bfs
-from graphs.graph import Vertex, Graph, AdjacencyListArray, get_graph
+from graphs.dijkstra import dijkstra
+from graphs.graph import Vertex, Graph, AdjacencyListGraph, get_graph
 from typing import List
 
 TIMEOUT = 5
@@ -16,7 +17,7 @@ if __name__ == '__main__':
     steps = args.steps
     verbose = args.verbose
 
-    graph: Graph = AdjacencyListArray([[1, 2], [2, 3], [4], [4, 5], [5], []])
+    graph: Graph = AdjacencyListGraph([[1, 2], [2, 3], [4], [4, 5], [5], []])
     vertices: List[Vertex] = graph.vertices()
     shortest_path = bfs_search(vertices[0], vertices[4])
     print('shortest_path', shortest_path)
