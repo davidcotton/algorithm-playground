@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List
+from typing import List
 
 
 class Vertex:
@@ -71,80 +71,3 @@ class Graph(ABC):
     def remove_edge(self, e: Edge) -> None:
         """Remove an edge."""
         pass
-
-
-class AdjacencyListVertex(Vertex):
-    def __init__(self, key, neighbours=None) -> None:
-        super().__init__(key)
-        self._neighbours: List[Vertex] = neighbours if neighbours is not None else []
-
-
-class AdjacencyListGraph(Graph):
-    """An array backed implementation of an Adjacency List Graph."""
-    def __init__(self, adjacency_list=None) -> None:
-        self._vertices = []
-        if adjacency_list is not None:
-            for vertices in adjacency_list:
-                self.add_vertex(vertices)
-
-    def vertices(self) -> List[Vertex]:
-        """Get all vertices."""
-        vertices: Dict[int, Vertex] = {}
-        for i, neighbours in enumerate(self._vertices):
-            if i in vertices:
-                vertex = vertices[i]
-            else:
-                vertex = AdjacencyListVertex(i)
-                vertices[i] = vertex
-
-            for n in neighbours:
-                if n in vertices:
-                    neighbour = vertices[n]
-                else:
-                    neighbour = AdjacencyListVertex(n)
-                    vertices[n] = neighbour
-                vertex.add_neighbour(neighbour)
-        return list(vertices.values())
-
-    def edges(self) -> List[Edge]:
-        """Get all edges."""
-        edges: List[Edge] = []
-        # @todo fix
-        for vertex in self._vertices:
-            pass
-        #     edge = Edge(v, w)
-        #     edges.append(edge)
-        return edges
-
-    def add_vertex(self, v: Vertex) -> None:
-        """Insert a vertex v."""
-        self._vertices.append(v)
-
-    def remove_vertex(self, vertex: Vertex) -> None:
-        """Remove a vertex v and its incident edges."""
-        for v in self._vertices:
-            if vertex == v:
-                self._vertices.remove(vertex)
-
-    def are_adjacent(self, v: Vertex, w: Vertex) -> bool:
-        """True if v and w are adjacent."""
-        return False
-
-    def add_edge(self, e: Edge, v: Vertex, w: Vertex) -> None:
-        """Insert an edge between two vertices."""
-        pass
-
-    def remove_edge(self, e: Edge) -> None:
-        """Remove an edge."""
-        pass
-
-
-def get_graph():
-    graph = AdjacencyListGraph([[1, 2], [2, 3], [4], [4, 5], [5], []])
-    return graph
-
-
-def generate_graph(n):
-    graph = AdjacencyListGraph()
-
-    return graph

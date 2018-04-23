@@ -1,28 +1,29 @@
-from graphs.graph import get_graph
+"""Depth-First Search
+Search a graph by following one path at a time."""
+
+from graphs.adjacencylist import get_graph
+from graphs.graph import Graph, Vertex
+from typing import List, Optional
 
 
-class DepthFirstSearch:
-
-    def __init__(self):
-        pass
-
-    def visit(self, V, adj, s):
-        parent = {'s': None}
-        for v in adj[s]:
-            if v not in self.parent:
-                self.parent[v] = s
-                self.visit(V, adj, s)
+def dfs_search(start: Vertex, goal: Vertex) -> Optional[List[Vertex]]:
+    """Search for the goal vertex within a graph in a depth-first manner."""
+    pass
 
 
-def dfs(adj, vertices):
+def dfs(root: Vertex) -> List[Vertex]:
+    pass
+
+
+def dfs_old(adj, vertices):
     parent = {}
     for s in vertices:
         if s not in parent:
-            parent[s] = dfs_visit(adj, s)
+            parent[s] = dfs_visit_old(adj, s)
     return parent
 
 
-def dfs_visit(adj, s):
+def dfs_visit_old(adj, s):
     """Depth-first Search.
     Returns a tree describing every vertex that is reachable from the source vertex.
 
@@ -41,7 +42,11 @@ def dfs_visit(adj, s):
 
 
 if __name__ == '__main__':
-    graph = get_graph()
-    search = DepthFirstSearch()
-    result = search.visit(graph.get_root(), None, None)
-    print(result)
+    graph: Graph = get_graph()
+    vertices: List[Vertex] = graph.vertices()
+
+    shortest_path = dfs_search(vertices[0], vertices[4])
+    print('shortest path', shortest_path)
+
+    all_paths = dfs(vertices[0])
+    print('all paths', all_paths)

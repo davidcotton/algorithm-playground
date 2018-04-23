@@ -1,10 +1,14 @@
+"""Breadth-First Search
+Search a graph one level at a time."""
+
 from collections import deque
-from graphs.graph import Vertex
+from graphs.adjacencylist import get_graph
+from graphs.graph import Graph, Vertex
 from typing import List, Optional
 
 
 def bfs_search(start: Vertex, goal: Vertex) -> Optional[List[Vertex]]:
-    """Search for the goal vertex within a graph.
+    """Search for the goal vertex within a graph in a breadth-first manner.
     Graph must have no loops and no edge weights to work.
     Returns the path as a list of vertices if goal is found else None."""
     frontier: deque[Vertex] = deque([start])
@@ -38,3 +42,14 @@ def bfs(root: Vertex) -> List[List]:
         else:
             paths.append(path)
     return list(paths)
+
+
+if __name__ == '__main__':
+    graph: Graph = get_graph()
+    vertices: List[Vertex] = graph.vertices()
+
+    shortest_path = bfs_search(vertices[0], vertices[4])
+    print('shortest path', shortest_path)
+
+    all_paths = bfs(vertices[0])
+    print('all paths', all_paths)
