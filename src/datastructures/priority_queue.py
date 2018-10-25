@@ -1,7 +1,8 @@
 """Priority Queues."""
 
 from abc import ABC, abstractmethod
-from heap import BinaryHeap
+
+from src.datastructures.heap import BinaryHeap
 
 
 class PriorityQueue(ABC):

@@ -5,14 +5,13 @@ import os.path
 from statistics import median
 from time import time
 
-from searching.boyer_moore import BoyerMoore
-from searching.brute_force import BruteForce
-from searching.knuth_morris_pratt import KMP
-from searching.trie import TrieMap
+from src.text.searching.boyer_moore import BoyerMoore
+from src.text.searching.brute_force import BruteForce
+from src.text.searching.knuth_morris_pratt import KMP
 
 NUM_ATTEMPTS = 5
 PRECISION = 5
-DATA_DIR = '../corpora'
+DATA_DIR = 'data/corpora'
 
 
 def read_file(f):
@@ -27,7 +26,7 @@ def read_file(f):
 
 
 def get_file(f):
-    return '{}/{}.txt'.format(DATA_DIR, f)
+    return os.path.join(DATA_DIR, f + '.txt')
 
 
 def run_search(matcher, pattern, text):

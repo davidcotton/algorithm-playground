@@ -1,6 +1,6 @@
-from collections import deque
-from graphs.graph import Vertex
 from typing import List, Optional
+
+from src.graphs.graph import Vertex
 
 
 def dijkstra(start: Vertex, goal: Vertex) -> Optional[List[Vertex]]:

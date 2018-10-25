@@ -1,16 +1,16 @@
 """Sort data using various algorithms."""
 
-from bubble_sort import BubbleSort
-from bucket_sort import BucketSort
-from heap_sort import HeapSort
-from insertion_sort import InsertionSort
-from merge_sort import MergeSort
-from quick_sort import RecursiveQuickSort, IterativeQuickSort
-from radix_sort import RadixSort3
-from selection_sort import SelectionSort
 import os.path
 from statistics import median
 from time import time
+
+from src.sorting.bubble_sort import BubbleSort
+from src.sorting.heap_sort import HeapSort
+from src.sorting.insertion_sort import InsertionSort
+from src.sorting.merge_sort import MergeSort
+from src.sorting.quick_sort import RecursiveQuickSort, IterativeQuickSort
+from src.sorting.selection_sort import SelectionSort
+
 
 NUM_SORTS = 3
 PRECISION = 5
@@ -55,7 +55,7 @@ def run_sort(sorter, data):
 
 
 if __name__ == '__main__':
-    d = read_file('./data/integers/1000.txt')
+    d = read_file('data/integers/1000.txt')
     run_sort(BubbleSort(), d)
     run_sort(InsertionSort(), d)
     run_sort(SelectionSort(), d)

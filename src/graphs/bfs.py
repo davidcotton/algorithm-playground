@@ -2,9 +2,10 @@
 Search a graph one level at a time."""
 
 from collections import deque
-from graphs.adjacencylist import get_graph
-from graphs.graph import Graph, Vertex
 from typing import List, Optional
+
+from src.graphs.adjacencylist import get_graph
+from src.graphs.graph import Graph, Vertex
 
 
 def bfs_search(start: Vertex, goal: Vertex) -> Optional[List[Vertex]]:

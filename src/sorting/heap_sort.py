@@ -2,7 +2,7 @@
 Heap sort uses the "heap" data-structure
 """
 
-from datastructures.heap import BinaryHeap
+from src.datastructures.heap import BinaryHeap
 
 
 class HeapSort:
@@ -24,7 +24,7 @@ class HeapSort:
             heap.insert(d)
 
         result = []
-        while not heap.empty():
+        while not heap.is_empty():
             result.append(heap.remove_min())
 
         return result

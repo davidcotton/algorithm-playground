@@ -11,8 +11,8 @@ Insert    | O(log n) | O(log n)
 Delete    | O(log n) | O(log n)
 """
 
-from binary_tree import BinaryTree, BinaryNode
-from dictionary import Dictionary
+from src.datastructures.binary_tree import BinaryTree, BinaryNode
+from src.datastructures.dictionary import Dictionary
 
 
 class AVLNode(BinaryNode):

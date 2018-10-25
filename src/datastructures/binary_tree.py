@@ -1,6 +1,6 @@
 """Binary Tree interface."""
 
-from tree import Tree, Node
+from src.datastructures.tree import Tree, Node
 from abc import abstractmethod
 
 

@@ -1,6 +1,6 @@
 """Use an AVL Tree to sort."""
 
-from avl_tree import AVLTree
+from src.datastructures.avl_tree import AVLTree
 
 
 class AVLTreeSort:

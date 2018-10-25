@@ -1,11 +1,7 @@
 import argparse
-import matplotlib.pyplot as plt
-import sys
-from time_method import time_method
-from graphs.bfs import bfs_search, bfs
-from graphs.adjacencylist import AdjacencyListGraph, get_graph
-from graphs.dijkstra import dijkstra
-from graphs.graph import Vertex, Graph
+from src.graphs.bfs import bfs_search, bfs
+from src.graphs.adjacencylist import get_graph
+from src.graphs.graph import Vertex, Graph
 from typing import List
 
 TIMEOUT = 5

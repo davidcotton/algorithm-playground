@@ -1,9 +1,10 @@
 """Depth-First Search
 Search a graph by following one path at a time."""
 
-from graphs.adjacencylist import get_graph
-from graphs.graph import Graph, Vertex
 from typing import List, Optional
+
+from src.graphs.adjacencylist import get_graph
+from src.graphs.graph import Graph, Vertex
 
 
 def dfs_search(start: Vertex, goal: Vertex) -> Optional[List[Vertex]]:

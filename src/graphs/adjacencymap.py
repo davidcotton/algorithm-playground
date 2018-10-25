@@ -1,7 +1,8 @@
 """Graph representation in which each vertex stores a collection of adjacent vertices in a map data structure."""
 
-from graphs.graph import Edge, Graph, Vertex
 from typing import Dict, List
+
+from src.graphs.graph import Edge, Graph, Vertex
 
 
 class WeightedAdjacencyMapVertex(Vertex):

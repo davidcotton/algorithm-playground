@@ -3,7 +3,8 @@
 """
 
 from math import floor
-from insertion_sort import InsertionSort
+
+from src.sorting.insertion_sort import InsertionSort
 
 
 class BucketSort:

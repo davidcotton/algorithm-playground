@@ -10,7 +10,8 @@
 """
 
 from abc import ABC
-from datastructures.stack import ArrayStack
+
+from src.datastructures.stack import ArrayStack
 
 
 class QuickSort(ABC):
